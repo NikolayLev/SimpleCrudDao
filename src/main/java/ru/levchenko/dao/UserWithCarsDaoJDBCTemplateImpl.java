@@ -66,7 +66,7 @@ public class UserWithCarsDaoJDBCTemplateImpl implements UserWithCarsDao {
     }
 
     @Override
-    public void update(User model, Integer id) {
+    public void update(User model) {
 
     }
 

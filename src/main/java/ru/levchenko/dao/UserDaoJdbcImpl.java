@@ -105,13 +105,13 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     @Override
-    public void update(User model, Integer id) {
+    public void update(User model) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_USER_BY_ID);
             preparedStatement.setString(1, model.getFirstName());
             preparedStatement.setString(2, model.getSecondName());
             preparedStatement.setInt(3, model.getAge());
-            preparedStatement.setInt(4,id);
+            preparedStatement.setInt(4,model.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new IllegalArgumentException();
