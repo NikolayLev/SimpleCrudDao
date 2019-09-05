@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name ="ru.levchenko.models.User" table="user_fortest">
+        <id name ="id" type ="int" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="firstName" column="first_name" type="string"/>
+        <property name="secondName" column="last_name" type="string"/>
+        <property name="age" column="age" type="int"/>
+        <set name="carList" cascade="all" fetch="">
+            <key column="owner_id"/>
+            <one-to-many class="ru.levchenko.models.Car" />
+        </set>
+
+    </class>
+    <class name="ru.levchenko.models.Car" table="car_fortest">
+        <id name ="id" type ="int" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="model"/>
+        <property name="maxSpeed"/>
+        <many-to-one name="owner" class="ru.levchenko.models.User"
+                     column="owner_id" unique="true" not-null="true"
+                     cascade="all"/>
+
+    </class>
+</hibernate-mapping>
